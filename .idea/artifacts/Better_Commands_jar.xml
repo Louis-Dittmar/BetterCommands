@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Better Commands:jar">
+    <output-path>$PROJECT_DIR$/../out/artifacts/Better_Commands_jar</output-path>
+    <root id="archive" name="Better Commands.jar">
+      <element id="module-output" name="Better Commands" />
+    </root>
+  </artifact>
+</component>

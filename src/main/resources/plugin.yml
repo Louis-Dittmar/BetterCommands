@@ -1,0 +1,12 @@
+name: BetterCommands
+version: ${project.version}
+main: de.louis.bettercommands.main
+api-version: 1.13
+authors: [Louis_Play]
+description: Mein MC Plugin
+website: https://github.com/LouisSpielt
+commands:
+  gm:
+    description: Gamemode Command
+  ping:
+    description: Pong!
