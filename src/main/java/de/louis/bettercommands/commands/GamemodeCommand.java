@@ -1,6 +1,6 @@
 package de.louis.bettercommands.commands;
 
-import de.louis.bettercommands.main;
+
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Sound;
@@ -13,140 +13,71 @@ public class GamemodeCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
-        Player player = (Player) sender;
-        Player target = Bukkit.getPlayerExact(args[2]);
-        if (args[2] == null) {
 
-            if (sender instanceof Player) {
+        if (sender instanceof Player) {
+            Player player = (Player) sender;
+            Player target = Bukkit.getPlayerExact(args[2]);
 
-                if (player.hasPermission("minecraft.command.gamemode") ||
-                        player.hasPermission(main.PluginName + ".command.gamemode.self")) {
 
-                    if (args[1] == String.valueOf(0)) {
-                        if (!(player.getGameMode() == GameMode.SURVIVAL)) {
+
+                switch (args[0]) {
+                    case "0":
+                    case "survival":
+                        if (player.getGameMode() == GameMode.SURVIVAL) {
+                            player.sendMessage("§6[§cGamemode§6]:Du Befindest dich Bereits im §cSurvival §6Gamemode.");
+                            player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_NO, 1, 1);
+                        } else {
+                            player.sendMessage("§6[§cGamemode§6]: Du hast dein Gamemode auf §cSurvival §6Gewechselt.");
+                            player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
                             player.setGameMode(GameMode.SURVIVAL);
-                            player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
-                            player.sendMessage("Du hast dein Gamemode auf Survial Gesetzt.");
-                            Bukkit.getLogger().info("Der Spieler " + player.getDisplayName() +
-                                    " hat sein Gamemode auf Survial Gesetzt");
-                        } else {
-                            player.sendMessage("Du befindest dich Bereits in deisem Gamemode.");
-                            player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_NO, 1, 1);
                         }
-
-                    }
-                    if (args[1] == String.valueOf(1)) {
-
-                        if (!(player.getGameMode() == GameMode.CREATIVE)) {
+                        break;
+                    case "1":
+                    case "creative":
+                        if (player.getGameMode() == GameMode.CREATIVE) {
+                            player.sendMessage("§6[§cGamemode§6]:Du Befindest dich Bereits im §cCreative §6Gamemode.");
+                            player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_NO, 1, 1);
+                        } else {
+                            player.sendMessage("§6[§cGamemode§6]: Du hast dein Gamemode auf §cCreative §6Gewechselt.");
+                            player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
                             player.setGameMode(GameMode.CREATIVE);
-                            player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
-                            player.sendMessage("Du Hast dein Gamemode auf Creative Gesetzt.");
-                            Bukkit.getLogger().info("Der Spieler" + player.getDisplayName() +
-                                    " hat sein Gamemode auf Creative Gesetzt.");
-
-                        } else {
-
-                            player.sendMessage("Du befindest dich Bereits in deisem Gamemode");
-                            player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_NO, 1, 1);
-
                         }
-
-
-                    }
-                    if (args[1] == String.valueOf(2)) {
-
-                        if (!(player.getGameMode() == GameMode.ADVENTURE)) {
+                        break;
+                    case "2":
+                    case "adventure":
+                        if (player.getGameMode() == GameMode.ADVENTURE) {
+                            player.sendMessage("§6[§cGamemode§6]:Du Befindest dich Bereits im §cAdventure §6Gamemode.");
+                            player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_NO, 1, 1);
+                        } else {
+                            player.sendMessage("§6[§cGamemode§6]: Du hast dein Gamemode auf §cAdventure §6Gewechselt.");
+                            player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
                             player.setGameMode(GameMode.ADVENTURE);
-                            player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
-                            player.sendMessage("Du hast dein Gamemode auf ADVenture Gesetzt.");
-                            Bukkit.getLogger().info("Der Spieler " + player.getDisplayName() +
-                                    "hat sein Gamemode auf Adventure gesetzt.");
-
-                        } else {
-                            {
-
-                                player.sendMessage("Du befindest dich Bereits in deisem Gamemode");
-                                player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_NO, 1, 1);
-
-                            }
-
-
                         }
-                    }
-                    if (args[1] == String.valueOf(3)) {
-
-                        if (!(player.getGameMode() == GameMode.SPECTATOR)) {
-                            player.setGameMode(GameMode.SPECTATOR);
-                            player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
-                            player.sendMessage("Du hast dein Gamemode auf Spectator Gesetzt");
-
-
-                        } else {
-
-                            player.sendMessage("Du befindest dich Bereits in deisem Gamemode");
+                        break;
+                    case "3":
+                    case "spectator":
+                        if (player.getGameMode() == GameMode.SPECTATOR) {
+                            player.sendMessage("§6[§cGamemode§6]:Du Befindest dich Bereits im §cSpectator §6Gamemode.");
                             player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_NO, 1, 1);
-
+                        } else {
+                            player.sendMessage("§6[§cGamemode§6]: Du hast dein Gamemode auf §cSpectator §6Gewechselt.");
+                            player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
+                            player.setGameMode(GameMode.SPECTATOR);
                         }
+                        break;
+                    default:
+                        player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_NO, 1, 1);
+                        player.sendMessage("§6[§cGamemode§6]: Du kannst leider nicht in Diesen Gamemode wechseln!");
 
-                    }
-
-
-                } else {
-
-                    player.sendMessage("§6[BetterCommands]§8 Du bist leider nicht berechtigt diesen befehl zu Nutzen.");
-                    player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_NO, 1, 1);
-                    Bukkit.getLogger().info("Der Spieler " + player.getDisplayName()
-                            + " hat gerade versucht sein Gamemode zu ändern.");
+                        break;
                 }
 
-            } else {
-                player.sendMessage("Du Kannst dein Gamemode nicht ändern");
-            }
-
-        } else {
-
-            if (player.hasPermission("minecraft.command.gamemode") ||
-                    player.hasPermission(main.PluginName + ".command.gamemode.other")) {
-
-
-                if (args[1] == String.valueOf(0)) {
-
-                    if (!(target.getGameMode() == GameMode.SURVIVAL)) {
-                        target.setGameMode(GameMode.SURVIVAL);
-                        target.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
-                        target.sendMessage("Dein Gamemmode würde von " + player.getName() + " auf Survial Gesetzt.");
-                        player.sendMessage("Du hast den Gamemode von " + target.getDisplayName() + " auf Survial Gesetzt.");
-                        player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
-
-                    } else {
-                        player.sendMessage("Der Spieler " + target.getName() + "ist bereits im Survial Mode");
-
-                    }
-
-
-                }
-                if (args[1] == String.valueOf(1)) {
-
-
-                }
-                if (args[1] == String.valueOf(2)) {
-
-
-                }
-                if (args[1] == String.valueOf(3)) {
-
-
-                }
-
-
-            }
 
 
         }
 
 
-        return false;
+        return true;
     }
-
 }
 
